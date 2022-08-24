@@ -1,11 +1,14 @@
 package com.melody.book.entity;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -14,12 +17,26 @@ import java.util.Collection;
  * @date 2022/8/22 16:31
  */
 @Entity
-public class Reader implements UserDetails {
+@Table(name = "reader")
+public class Reader  {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String username;
     private String fullname;
     private String password;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Reader() {
+    }
 
     public Reader(String username) {
         this.username = username;
@@ -50,28 +67,28 @@ public class Reader implements UserDetails {
     }
 
     // UserDetails methods
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("READER"));
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return Arrays.asList(new SimpleGrantedAuthority("READER"));
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 }
